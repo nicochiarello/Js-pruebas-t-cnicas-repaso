@@ -1,6 +1,5 @@
-const arr = ["primerValor", "segundoValor"]
+let obj = {name: "nico", age: 22}
 
-const [primerValor, segundoValor] = arr
+delete obj.name
 
-console.log(primerValor) // "primerValor"
-console.log(segundoValor) // "segundoValor"
+console.log(obj)
