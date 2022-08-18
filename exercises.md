@@ -400,3 +400,95 @@ Repito de nuevo el procedimiento ya que arr[m] no es igual a x
 > El cálculo sería (8 + 9)/2 = 8.5 = 8 (aproximo al menor)
 
 En este caso el array en m, es decir en la posición 8 es igual a 72, que es el valor de nuestra incógnita, con esto hemos dado con la solución (8).
+
+## 17) Busqueda binaria en javascript
+
+    function binarySearch(arr, l , r , x){
+        if(l > r) return -1 // Significa que no hay solución posible
+
+        const m = Math.floor( (l + r) / 2 )
+
+        if(arr[m] === x) return m
+
+        if(arr[m] < x){
+            return binarySearch(arr, m + 1, r , x)
+        }else{
+            return binarySearch(arr, l, m - 1 , x)
+        }
+
+
+
+    }
+
+    const arr = [2,5,8,12,16,23,38,56,72,91]
+
+    console.log(binarySearch(arr, 0, arr.length - 1, 72)) // 8
+
+
+## 18) Solve this exercise:
+
+
+Implement the body of the customSort(table, criteria) function.
+
+The first argument of customSort() is an array of objects. The function should sort the array on the property given as the second argument criteria in descending order. The property is numerical only.
+
+Example:
+
+    var a = [{id: 2}, {id:3}, {id:1}]
+
+Will be sorted by function customSort(a, 'id') as:
+
+    [{id: 3}, {id: 2}, {id: 1}]
+
+Solución:
+
+    var a = [{id: 2}, {id:3}, {id:1}]
+
+    function customSort(table, criteria){
+        table.sort((a,b) =>{
+            if(a[criteria] > b[criteria]) return 1
+            if(b[criteria] > a[criteria]) return -1
+            return 0
+        })
+
+        return table
+    }
+
+    customSort(a, "id") // [ { id: 1 }, { id: 2 }, { id: 3 } ]
+
+
+> Puntos importantes:
+> - La función array.prototype.sort puede llamarse sin pasarle ninguna callback, en ese caso hace una comparación transformando todo a string.
+> - En este caso en la callback es importante destacar el uso de [] para acceder a la propiedad del objeto: a[criteria] .
+
+
+## 19) Realizar una función que reciba un array de números y retorne el valor mas cercano a cero :
+
+> Si el mismo valor absoluto existe, debe devolverse el positivo. 
+> Ej: cercanoACero([1,2,3,4,-1]) debe retornar 1
+
+
+
+    function compare(arr) {
+
+        let closest = arr[0]
+
+        for (let i = 0; i < arr.length; i++) {
+            //Caso de que sea mayor a cero
+            if (arr[i] > 0 && arr[i] <= Math.abs(closest) ) {
+                closest = arr[i]
+            }
+            //Caso de que sea menor a cero
+            if (arr[i] < 0 && Math.abs(arr[i]) < Math.abs(closest) ) {
+                closest = arr[i]
+            }
+        }
+
+        return closest
+
+    }
+
+    compare([ -5,-4, 5, 17, 25]) // -4
+    compare([ -5,-4, 4, 5, 17, 25]) // 4
+
+

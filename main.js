@@ -1,5 +1,21 @@
-let obj = {name: "nico", age: 22}
+function compare(arr) {
 
-delete obj.name
+    let closest = arr[0]
 
-console.log(obj)
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] > 0 && arr[i] <= Math.abs(closest) ) {
+            closest = arr[i]
+        }
+        if (arr[i] < 0 && Math.abs(arr[i]) < Math.abs(closest) ) {
+            closest = arr[i]
+        }
+    }
+
+    return closest
+
+}
+
+compare([ -5,-4, 5, 17, 25]) // -4
+compare([ -5,-4, 4, 5, 17, 25]) // 4
+
+
