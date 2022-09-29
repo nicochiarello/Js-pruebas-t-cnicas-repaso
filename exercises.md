@@ -424,8 +424,12 @@ En este caso el array en m, es decir en la posición 8 es igual a 72, que es el 
 
     console.log(binarySearch(arr, 0, arr.length - 1, 72)) // 8
 
+***
 
-## 18) Solve this exercise:
+# Prueba técnica coderbyte:
+
+
+## 1) Solve this exercise:
 
 
 Implement the body of the customSort(table, criteria) function.
@@ -462,7 +466,7 @@ Solución:
 > - En este caso en la callback es importante destacar el uso de [] para acceder a la propiedad del objeto: a[criteria] .
 
 
-## 19) Realizar una función que reciba un array de números y retorne el valor mas cercano a cero :
+## 2) Realizar una función que reciba un array de números y retorne el valor mas cercano a cero :
 
 > Si el mismo valor absoluto existe, debe devolverse el positivo. 
 > Ej: cercanoACero([1,2,3,4,-1]) debe retornar 1
@@ -492,3 +496,303 @@ Solución:
     compare([ -5,-4, 4, 5, 17, 25]) // 4
 
 
+## 3) Realizar una función calc(arr,n1,n2) que reciba un array, y dos índices. Se debe retornar la suma de los elementos del array que se encuentren entre los dos índices
+
+- Se debe respetar la relación 0 <= n1 <= n2 <= arr.length
+
+>Ej: calc([1,2,3], 0, 2) // 6
+
+solución: 
+
+    function calc(arr, n1, n2) {
+
+        if (n2 < n1) return "Operation cannot be performed"
+
+        let sum = 0
+
+        for (let i = n1; i <= n2; i++) {
+            sum += arr[i]
+        }
+
+
+
+        return sum
+
+    }
+
+
+    const arr = [1, 5, 4, 10, 7, 4]
+
+
+    calc(arr, 0, 4) // 27
+
+## 4) In HTML, how should you write the < sign (less than) so it isn't considered as an HTML tag
+
+> Some characters are reserved in HTML.
+
+If you use the less than (<) or greater than (>) signs in your text, the browser might mix them with tags.
+
+Character entities are used to display reserved characters in HTML.
+
+A character entity looks like this:
+
+    &entity_name;
+    OR
+
+    &#entity_number;
+
+ To display a less than sign (<) we must write: "&lt"; or "&#60"; 
+
+
+## 4) In html what type of input field is used to add data to a form that is not displayed to the user
+
+The `<input type="hidden">` defines a hidden input field. A hidden field lets web developers include data that cannot be seen or modified by users when a form is submitted. A hidden field often stores what database record that needs to be updated when the form is submitted.
+
+## 5) Camel case
+
+Have the function CamelCase(str) and return the string in lowerCamelCase.
+The string will only contain letters and some
+combination or delimiter punctuation characters separating
+each word
+For example: if str is "BOB loves-coding" then your program
+should return the string bobLovesCoding
+
+    function camelCase(str){
+
+        const stringArr = str.split(/[\W]/g)
+        const aux = []
+        for(let i = 0; i < stringArr.length ; i++){
+            if(i == 0){
+                aux.push(stringArr[i].toLowerCase())
+            }else{
+
+                aux.push(stringArr[i][0].toUpperCase() + stringArr[i].slice(1).toLowerCase())
+            }
+        }
+        return aux.join("")
+    }
+
+
+    camelCase("cats AND*DOGS-are Awesome") // catsAndDogsAreAwesome
+    camelCase("BOB Loves-coding") // bobLovesCoding
+    camelCase("a b c d-e-f%g") // aBCDEFG
+
+
+
+****
+## Prueba técnica 2
+****
+
+## 1) Given the following code:
+
+    const toLower = word => word.toLowerCase();
+    const includesChartE = word => word.includes('e')
+    const fruits = ['Apple', 'Orange', 'Banana', 'Kiwi']
+
+    const result = fruits
+        .map(toLower)
+        .filter(includesChartE)
+        .reduce((accumulator, current) => `${accumulator} ${current} |`, '|')
+
+
+    console.log(result)
+
+What should the result be?
+
+- | apple | orange |
+- | apple | orange | banana | kiwi |
+- ['Apple', 'Orange]
+- | Apple | Orange |
+
+
+## 2) Given the following code:
+
+    function test() {
+        console.log(a)
+        console.log(foo());
+        var a = 1
+        function foo() {
+            return 2;
+        }
+
+    }
+
+    test()
+
+What should the result be?
+
+## 3) Given the following code:
+
+    const person1 = {
+        name: "alex",
+        surname: "green",
+        age: 30
+    }
+
+    const person2 = {
+        ...person1,
+        country: null,
+        country: "japan"
+    }
+
+    console.log(person2.country)
+
+What should the result be in the console?
+
+****
+
+## Práctica de reduce()
+
+
+    // reduce
+
+    const people = [
+        { id: "1", name: "Leigh", age: 35 },
+        { id: "2", name: "Jenny", age: 30 },
+        { id: "3", name: "Heather", age: 16 },
+    ];
+
+    let result;
+
+    // count
+
+    result = people.reduce((acc, item) => {
+        return acc + 1
+    }, 0)
+
+    console.log({ count: result })
+
+    // sum ages
+
+    result = people.reduce((acc, item) => {
+        return acc + item.age
+    }, 0)
+
+    console.log({ sumOfAges: result })
+
+
+    // array of names (map)
+
+    result = people.reduce((acc, item) => {
+        return [...acc, item.name]
+    }, [])
+
+    console.log({ ArrayOfNames: result })
+
+
+    // convert to id => person lookup (dict)
+
+    result = people.reduce((acc, item, key) => {
+        return { ...acc, [item.id]: item }
+    }, {})
+
+    console.log({ convertId: result })
+
+    // max age
+
+    result = people.reduce((acc, item) => {
+        if (item.age > acc) {
+            return item.age
+        } else {
+            return acc
+        }
+    }, 0)
+
+    console.log({ maxAge: result })
+
+    // min age
+
+    result = people.reduce((acc, item) => {
+        if (item.age < acc || acc === 0) {
+            return item.age
+        } else {
+            return acc
+        }
+    }, 0)
+
+    console.log({ minAge: result })
+
+    // all over 18
+
+    result = people.reduce((acc, item) => {
+        if (item.age > 18) {
+            return { ...acc, nmbHits: acc.nmbHits + 1, matches: [...acc.matches, item] }
+        }
+        return acc
+    }, {
+        matches: [],
+        nmbHits: 0
+    })
+
+
+
+    console.log({ allOver18: result })
+
+    // all under 18
+
+    result = people.reduce((acc, item) => {
+        if (item.age < 18) {
+            return { ...acc, nmbHits: acc.nmbHits + 1, matches: [...acc.matches, item] }
+        }
+        return acc
+    }, {
+        matches: [],
+        nmbHits: 0
+    })
+
+    console.log({ allUnder18: result })
+
+    // any under 18
+
+
+    result = people.reduce((acc, item) => {
+        if (acc === true) return acc
+
+        if (item.age < 18) return true
+
+        return false
+    }, false)
+
+    console.log({ anyUnder18: result })
+
+
+
+    // count occurrences
+
+    const orders = [
+        { id: "1", status: "pending", name: "ps4" },
+        { id: "2", status: "pending", name: "ps5" },
+        { id: "3", status: "cancelled", name: "xbox" },
+        { id: "4", status: "cancelled", name: "pc" },
+        { id: "5", status: "cancelled", name: "macbook" },
+        { id: "6", status: "shipped", name: "Iphone" },
+    ];
+
+    result = orders.reduce((acc, item) => {
+        if (acc[item.status]) {
+            return { ...acc, [item.status]: { count: (acc[item.status].count + 1), items: [...acc[item.status].items, item] }}
+        } else {
+            return { ...acc, [item.status]: { count: 1 , items: [{...item}]} }
+        }
+    }, {})
+
+    console.log({ ordersStatus: result })
+
+    // flatten
+
+    const folders = [
+        "index.js",
+        ["flatten.js", "map.js"],
+        ["any.js", ["all.js", "count.js"]],
+    ];
+
+    const recursiveFlatten = (acc, item) => {
+        if(Array.isArray(item)){
+            return item.reduce(recursiveFlatten, acc) 
+        }
+        return [...acc, item];
+    }
+
+
+    result = folders.reduce(recursiveFlatten, [])
+    console.log({recursiveFlatten: result})

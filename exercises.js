@@ -291,3 +291,7 @@ console.log(y);
     console.log(y);
 
 // En este caso al si existir referencia externa a la función el resultado hubiera sido "1function"
+
+
+
+  
